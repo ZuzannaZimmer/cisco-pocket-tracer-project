@@ -1,0 +1,92 @@
+en 
+
+conf t 
+
+host R1 
+
+Int  f0/0 
+
+Ip address 192.168.2.1 255.255.255.0 
+
+No shutdown 
+
+Exit 
+
+ 
+
+Ip dhcp excluded-address 192.168.1.1 
+
+Ip dhcp pool VOIP 
+
+Network 192.168.1.0 255.255.255.0 
+
+default-router 192.168.1.1 
+
+Option ? 
+
+Option 150 ip 192.168.1.1 
+
+OBA TE DO RUTERA DAJE SIE ALE NAJPIERW JEDEN MA 1 POTEM DRUGI MA 2
+
+POTEM WLACZASZ FONY I SMIGA
+ to tez do rutera \/
+
+telephony-service 
+
+Max-dn 2 
+
+Max-ephones 2 
+
+Ip source-address 192.168.1.1 port 2000 tu tylko ip
+
+Exit 
+
+ 
+
+ephone ? 
+
+ephone-dn 1 
+
+number 10     tylko numery sie zmienia
+
+exit 
+
+ 
+
+ephone-dn 2 
+
+number 20 
+
+exit 
+
+ 
+
+ 
+
+ 
+
+ephone 1 
+
+button 1:1 
+
+ exit 
+
+ 
+
+ephone 2 
+
+button 1:2 
+
+exit 
+
+ 
+
+show ephone 
+
+ 
+
+dial-peer voice 1 voip 
+
+destination-pattern .. 
+
+session target ipv4: 10.10.10.2 do przzeciwnego (tam gdzie ruter z 10.10.10.1 dajey z 2) 
